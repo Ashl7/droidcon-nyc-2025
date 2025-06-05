@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Do not edit directly, this file was auto-generated.
+-->
+<resources>
+  <color name="colors_black">#ff000000</color>
+  <color name="colors_white">#ffffffff</color>
+  <color name="colors_orange_100">#fffffaf0</color>
+  <color name="colors_orange_200">#fffeebc8</color>
+  <color name="colors_orange_300">#fffbd38d</color>
+  <color name="colors_orange_400">#fff6ad55</color>
+  <color name="colors_orange_500">#ffed8936</color>
+  <color name="colors_orange_600">#ffdd6b20</color>
+  <color name="colors_orange_700">#ffc05621</color>
+  <color name="colors_orange_800">#ff9c4221</color>
+  <color name="colors_orange_900">#ff7b341e</color>
+</resources>
