@@ -1,10 +1,8 @@
-
 //
 // StyleDictionaryColor.swift
 //
 
 // Do not edit directly, this file was auto-generated.
-
 
 import UIKit
 import SwiftUI
@@ -23,9 +21,20 @@ public enum StyleDictionaryColor {
     public static let colorsWhite = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
 }
 
-
-extension Color {
+// SwiftUI Color Extensions
+public extension Color {
+    // Base colors
+    static var colorBlack: Color { Color(uiColor: StyleDictionaryColor.colorsBlack) }
+    static var colorWhite: Color { Color(uiColor: StyleDictionaryColor.colorsWhite) }
     
-    static var colorblack: Color { Color(uiColor: StyleDictionaryColor.colorsBlack)) }
-    
+    // Orange shades
+    static var orange100: Color { Color(uiColor: StyleDictionaryColor.colorsOrange100) }
+    static var orange200: Color { Color(uiColor: StyleDictionaryColor.colorsOrange200) }
+    static var orange300: Color { Color(uiColor: StyleDictionaryColor.colorsOrange300) }
+    static var orange400: Color { Color(uiColor: StyleDictionaryColor.colorsOrange400) }
+    static var orange500: Color { Color(uiColor: StyleDictionaryColor.colorsOrange500) }
+    static var orange600: Color { Color(uiColor: StyleDictionaryColor.colorsOrange600) }
+    static var orange700: Color { Color(uiColor: StyleDictionaryColor.colorsOrange700) }
+    static var orange800: Color { Color(uiColor: StyleDictionaryColor.colorsOrange800) }
+    static var orange900: Color { Color(uiColor: StyleDictionaryColor.colorsOrange900) }
 }

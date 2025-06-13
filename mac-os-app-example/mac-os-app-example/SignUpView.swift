@@ -14,6 +14,7 @@ struct SignUpView: View {
                     Text("Sign Up")
                         .font(.largeTitle)
                         .bold()
+                        .foregroundColor(.colorBlack)
                         .padding(.top, 100)
                         .padding(.bottom, 50)
                     
@@ -32,16 +33,16 @@ struct SignUpView: View {
                     // Sign Up Button
                     Button(action: {
                         // Add your sign up logic here
-                        print("Sign up tapped - Username: \\(username)")
+                        print("Sign up tapped - Username: \(username)")
                     }) {
                         Text("Sign Up")
                             .fontWeight(.semibold)
-                            .foregroundColor(.white)
+                            .foregroundColor(.colorWhite)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.blue)
+                                    .fill(Color.orange500)
                             )
                     }
                     .buttonStyle(PlainButtonStyle()) // This removes the default button styling
@@ -50,22 +51,22 @@ struct SignUpView: View {
                     Spacer()
                     
                     // Footer text
-                    Text("Doridcon nyc 2025")
+                    Text("Droidcon NYC 2025")
                         .font(.caption)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.orange700)
                         .padding(.bottom, 20)
                 }
                 
                 // Dark/Light mode toggle in top right
                 HStack {
                     Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
-                        .foregroundColor(isDarkMode ? .white : .yellow)
+                        .foregroundColor(isDarkMode ? .colorWhite : .orange400)
                     
                     Toggle("", isOn: $isDarkMode)
                         .labelsHidden()
                 }
                 .padding()
-                .background(isDarkMode ? Color.black.opacity(0.2) : Color.gray.opacity(0.2))
+                .background(isDarkMode ? Color.colorBlack.opacity(0.2) : Color.orange100)
                 .cornerRadius(10)
                 .padding()
             }
@@ -74,8 +75,6 @@ struct SignUpView: View {
     }
 }
 
-struct SignUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpView()
-    }
+#Preview {
+    SignUpView()
 }
