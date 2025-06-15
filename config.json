@@ -106,7 +106,7 @@
     },
     "ios-swift": {
       "transformGroup": "ios-swift",
-      "buildPath": "build/ios-swift/",
+      "buildPath": "mac-os-app-example/mac-os-app-example/generated-tokens/",
       "files": [
         {
           "destination": "StyleDictionary+Class.swift",
@@ -136,7 +136,7 @@
     },
     "ios-swift-separate-enums": {
       "transformGroup": "ios-swift-separate",
-      "buildPath": "build/ios-swift/",
+      "buildPath": "mac-os-app-example/mac-os-app-example/generated-tokens/",
       "files": [
         {
           "destination": "StyleDictionaryColor.swift",
