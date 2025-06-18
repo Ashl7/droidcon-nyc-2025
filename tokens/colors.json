@@ -1,40 +1,25 @@
 {
   "colors": {
     "$type": "color",
-    "black": {
-      "$value": "#000000"
+    // Light colors
+    "primaryModeLight": {
+      "$value": "#E04C1F"
     },
-    "white": {
-      "$value": "#ffffff"
+    "secondaryModeLight": {
+      "$value": "#0057CC"
     },
-    "orange": {
-      "100": {
-        "$value": "#fffaf0"
-      },
-      "200": {
-        "$value": "#feebc8"
-      },
-      "300": {
-        "$value": "#fbd38d"
-      },
-      "400": {
-        "$value": "#f6ad55"
-      },
-      "500": {
-        "$value": "#ed8936"
-      },
-      "600": {
-        "$value": "#dd6b20"
-      },
-      "700": {
-        "$value": "#c05621"
-      },
-      "800": {
-        "$value": "#9c4221"
-      },
-      "900": {
-        "$value": "#7b341e"
-      }
-    }
+    "tertiaryModeLight": {
+      "$value": "#FF515B"
+    },
+    // Dark colors
+    "primaryModeDark": {
+      "$value": "#0057CC"
+    },
+    "secondaryModeDark": {
+      "$value": "#E04C1F"
+    },
+    "tertiaryModeDark": {
+      "$value": "#FF515B"
+    },
   }
 }
