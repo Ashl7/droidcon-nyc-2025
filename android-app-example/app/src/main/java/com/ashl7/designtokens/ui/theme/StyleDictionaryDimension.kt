@@ -4,12 +4,12 @@
 
 
 
-package StyleDictionarySize
+package StyleDictionaryDimension
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.*
 
-object StyleDictionarySize {
+object StyleDictionaryDimension {
   val dimensions0 = 0.00.dp
   val dimensions1 = 64.00.dp
   val dimensions10 = 640.00.dp

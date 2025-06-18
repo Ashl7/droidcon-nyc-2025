@@ -1,13 +1,14 @@
+
 //
-// StyleDictionarySize.swift
+// StyleDictionaryDimension.swift
 //
 
 // Do not edit directly, this file was auto-generated.
 
 
-import CoreGraphics
+import UIKit
 
-public enum StyleDictionarySize {
+public enum StyleDictionaryDimension {
     public static let dimensions0 = CGFloat(0.00)
     public static let dimensions1 = CGFloat(64.00)
     public static let dimensions10 = CGFloat(640.00)
