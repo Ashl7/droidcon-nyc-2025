@@ -4,10 +4,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 object StyleDictionaryDimension {
-    val sizeradius0 = 0.dp
-    val sizeradius8 = 8.dp
-    val sizeradius16 = 16.dp
-    val sizeiconsmall = 32.dp
-    val sizeiconmedium = 64.dp
-    val sizeiconlarge = 128.dp
+    val sizeRadius0 = 0.dp
+    val sizeRadius8 = 8.dp
+    val sizeRadius16 = 16.dp
+    val sizeIconSmall = 32.dp
+    val sizeIconMedium = 64.dp
+    val sizeIconLarge = 128.dp
 }

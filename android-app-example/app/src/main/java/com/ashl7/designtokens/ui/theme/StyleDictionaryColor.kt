@@ -4,10 +4,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 object StyleDictionaryColor {
-    val colorprimarylight = Color(0xFFE04C1F)
-    val colorprimarydark = Color(0xFF0057CC)
-    val colorsecondarylight = Color(0xFF0057CC)
-    val colorsecondarydark = Color(0xFFE04C1F)
-    val colortertiarylight = Color(0xFFFF515B)
-    val colortertiarydark = Color(0xFFFF515B)
+    val colorPrimaryLight = Color(0xFFE04C1F)
+    val colorPrimaryDark = Color(0xFF0057CC)
+    val colorSecondaryLight = Color(0xFF0057CC)
+    val colorSecondaryDark = Color(0xFFE04C1F)
+    val colorTertiaryLight = Color(0xFFFF515B)
+    val colorTertiaryDark = Color(0xFFFF515B)
 }
