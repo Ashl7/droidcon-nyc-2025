@@ -1,0 +1,8 @@
+{
+  "name": "droidcon-nyc-2025",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "style-dictionary": "^3.9.2"
+  }
+}
