@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 
@@ -66,6 +68,16 @@ fun LoginScreen(
                 var username by rememberSaveable { mutableStateOf("") }
                 var password by rememberSaveable { mutableStateOf("") }
                 var isPasswordWrong by rememberSaveable { mutableStateOf(false) }
+
+                Icon(
+                  painter = painterResource(R.drawable.ic_bank),
+                  contentDescription = "bank",
+                  tint = MaterialTheme.colorScheme.primary,
+                  modifier = Modifier
+                    .width(150.dp)
+                    .height(150.dp)
+                    .align(Alignment.CenterHorizontally)
+                )
 
                 Text(
                     text = "Log in to your account",

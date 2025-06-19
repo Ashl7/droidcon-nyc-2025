@@ -1,0 +1,14 @@
+package {{packageName}}
+
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+
+object {{className}} {
+{{#each properties}}
+    {{#if (eq this.type "color")}}
+    val {{this.name}} = Color(0xFF{{replace this.value "#" ""}})
+    {{else if (eq this.type "dimension")}}
+    val {{this.name}} = {{this.value}}.dp
+    {{/if}}
+{{/each}}
+}
