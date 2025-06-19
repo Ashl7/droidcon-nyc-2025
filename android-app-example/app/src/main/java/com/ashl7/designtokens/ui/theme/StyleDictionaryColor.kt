@@ -1,19 +1,13 @@
-
-
-// Do not edit directly, this file was auto-generated.
-
-
-
-package StyleDictionaryColor
+package com.ashl7.designtokens.ui.theme
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.*
+import androidx.compose.ui.unit.dp
 
 object StyleDictionaryColor {
-  val colorsPrimaryModeDark = Color(0xff0057cc)
-  val colorsPrimaryModeLight = Color(0xffe04c1f)
-  val colorsSecondaryModeDark = Color(0xffe04c1f)
-  val colorsSecondaryModeLight = Color(0xff0057cc)
-  val colorsTertiaryModeDark = Color(0xffff515b)
-  val colorsTertiaryModeLight = Color(0xffff515b)
+    val colorprimarylight = Color(0xFFE04C1F)
+    val colorprimarydark = Color(0xFF0057CC)
+    val colorsecondarylight = Color(0xFF0057CC)
+    val colorsecondarydark = Color(0xFFE04C1F)
+    val colortertiarylight = Color(0xFFFF515B)
+    val colortertiarydark = Color(0xFFFF515B)
 }
