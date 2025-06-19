@@ -1,56 +1,27 @@
 {
   "dimensions": {
     "$type": "dimension",
-    "0": {
-      "$value": "0px"
+    
+    // Radius
+    "radius-0": {
+      "$value": "0"
     },
-    "1": {
-      "$value": "4px"
+    "radius-8": {
+      "$value": "8"
     },
-    "2": {
-      "$value": "8px"
+    "radius-16": {
+      "$value": "16"
     },
-    "3": {
-      "$value": "12px"
+    
+    // Icon Sizes
+    "icon-size-small": {
+      "$value": "32"
     },
-    "4": {
-      "$value": "16px"
+    "icon-size-medium": {
+      "$value": "64"
     },
-    "5": {
-      "$value": "20px"
+    "icon-size-large": {
+      "$value": "128"
     },
-    "6": {
-      "$value": "24px"
-    },
-    "7": {
-      "$value": "28px"
-    },
-    "8": {
-      "$value": "32px"
-    },
-    "9": {
-      "$value": "36px"
-    },
-    "10": {
-      "$value": "40px"
-    },
-    "11": {
-      "$value": "44px"
-    },
-    "12": {
-      "$value": "48px"
-    },
-    "13": {
-      "$value": "52px"
-    },
-    "14": {
-      "$value": "56px"
-    },
-    "15": {
-      "$value": "60px"
-    },
-    "max": {
-      "$value": "9999px"
-    }
   }
 }
