@@ -1,27 +1,32 @@
 {
-  "dimensions": {
-    "$type": "dimension",
-    
-    // Radius
-    "radius-0": {
-      "$value": "0"
+  "size": {
+    "radius": {
+      "0": {
+        "value": "0",
+        "type": "dimension"
+      },
+      "8": {
+        "value": "8",
+        "type": "dimension"
+      },
+      "16": {
+        "value": "16",
+        "type": "dimension"
+      }
     },
-    "radius-8": {
-      "$value": "8"
-    },
-    "radius-16": {
-      "$value": "16"
-    },
-    
-    // Icon Sizes
-    "icon-size-small": {
-      "$value": "32"
-    },
-    "icon-size-medium": {
-      "$value": "64"
-    },
-    "icon-size-large": {
-      "$value": "128"
-    },
+    "icon": {
+      "small": {
+        "value": "32",
+        "type": "dimension"
+      },
+      "medium": {
+        "value": "64",
+        "type": "dimension"
+      },
+      "large": {
+        "value": "128",
+        "type": "dimension"
+      }
+    }
   }
 }

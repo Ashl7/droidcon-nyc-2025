@@ -1,25 +1,34 @@
 {
-  "colors": {
-    "$type": "color",
-    // Light colors
-    "primaryModeLight": {
-      "$value": "#E04C1F"
+  "color": {
+    "primary": {
+      "light": {
+        "value": "#E04C1F",
+        "type": "color"
+      },
+      "dark": {
+        "value": "#0057CC",
+        "type": "color"
+      }
     },
-    "secondaryModeLight": {
-      "$value": "#0057CC"
+    "secondary": {
+      "light": {
+        "value": "#0057CC",
+        "type": "color"
+      },
+      "dark": {
+        "value": "#E04C1F",
+        "type": "color"
+      }
     },
-    "tertiaryModeLight": {
-      "$value": "#FF515B"
-    },
-    // Dark colors
-    "primaryModeDark": {
-      "$value": "#0057CC"
-    },
-    "secondaryModeDark": {
-      "$value": "#E04C1F"
-    },
-    "tertiaryModeDark": {
-      "$value": "#FF515B"
-    },
+    "tertiary": {
+      "light": {
+        "value": "#FF515B",
+        "type": "color"
+      },
+      "dark": {
+        "value": "#FF515B",
+        "type": "color"
+      }
+    }
   }
 }
