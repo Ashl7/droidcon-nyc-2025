@@ -19,6 +19,33 @@ Handlebars.registerHelper('replace', function(str, find, replace) {
 });
 
 /**
+ * Helper function to convert hex to RGB values
+ */
+function parseColor(color) {
+  const hex = color.replace('#', '');
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  return { r, g, b };
+}
+
+// Register color helper functions for the macOS template
+Handlebars.registerHelper('colorRed', function(hex) {
+  const { r } = parseColor(hex);
+  return (r/255).toFixed(3);
+});
+
+Handlebars.registerHelper('colorGreen', function(hex) {
+  const { g } = parseColor(hex);
+  return (g/255).toFixed(3);
+});
+
+Handlebars.registerHelper('colorBlue', function(hex) {
+  const { b } = parseColor(hex);
+  return (b/255).toFixed(3);
+});
+
+/**
  * Transform: name/compose
  * Purpose: Converts token names into camelCase format suitable for Kotlin
  * Applies to: ALL tokens (no matcher specified)
@@ -42,7 +69,7 @@ StyleDictionary.registerTransform({
 });
 
 /**
- * Transform: size/dp
+ * Transform: size
  * Purpose: Prepares dimension values for Compose's dp format
  * Applies to: Only tokens with type "dimension" (controlled by matcher)
  * Example:
@@ -50,10 +77,24 @@ StyleDictionary.registerTransform({
  * - Output: "8" (template will add .dp later)
  */
 StyleDictionary.registerTransform({
-  name: 'size/dp',
+  name: 'size',
   type: 'value',  // Affects the property values
   matcher: (prop) => prop.type === 'dimension',  // Only runs on dimensions
   transformer: (prop) => prop.value
+});
+
+/**
+ * Transform: color/hex
+ * Purpose: Ensures color values are in correct hex format
+ */
+StyleDictionary.registerTransform({
+  name: 'color/hex',
+  type: 'value',
+  matcher: (prop) => prop.type === 'color',
+  transformer: (prop) => {
+    // Ensure the color value starts with #
+    return prop.value.startsWith('#') ? prop.value : `#${prop.value}`;
+  }
 });
 
 /**
@@ -71,6 +112,23 @@ StyleDictionary.registerFormat({
     return template({
       packageName: options.packageName,
       className: options.className,
+      properties: dictionary.allProperties
+    });
+  }
+});
+
+/**
+ * Format: macos/class
+ * Purpose: Generates Swift files for macOS without timestamp
+ */
+StyleDictionary.registerFormat({
+  name: 'macos/class',
+  formatter: function({ dictionary, file }) {
+    const templateContent = fs.readFileSync(path.join(__dirname, 'templates/macos-class.hbs'), 'utf8');
+    const template = Handlebars.compile(templateContent);
+    
+    return template({
+      className: file.className,
       properties: dictionary.allProperties
     });
   }
@@ -96,7 +154,7 @@ const myStyleDictionary = StyleDictionary.extend({
     // Compose (Android) platform
     compose: {
       // Transforms to apply (order matters!)
-      transforms: ['name/compose', 'size/dp'],
+      transforms: ['name/compose', 'size', 'color/hex'],
       // Output directory for generated files
       buildPath: "android-app-example/app/src/main/java/com/ashl7/designtokens/ui/theme/",
       // File configurations
@@ -129,15 +187,14 @@ const myStyleDictionary = StyleDictionary.extend({
         }
       ]
     },
-    // iOS platform configuration
-    "ios-swift": {
-      // Using built-in iOS transforms
-      transformGroup: "ios-swift",
+    // macOS platform configuration
+    "macos": {
+      transforms: ['name/compose', 'size', 'color/hex'],
       buildPath: "mac-os-app-example/mac-os-app-example/generated-tokens/",
       files: [
         {
           destination: "StyleDictionaryColor.swift",
-          format: "ios-swift/class.swift",
+          format: "macos/class",
           className: "StyleDictionaryColor",
           filter: {
             type: "color"
@@ -145,7 +202,7 @@ const myStyleDictionary = StyleDictionary.extend({
         },
         {
           destination: "StyleDictionaryDimension.swift",
-          format: "ios-swift/class.swift",
+          format: "macos/class",
           className: "StyleDictionaryDimension",
           filter: {
             type: "dimension"

@@ -1,0 +1,11 @@
+import AppKit
+
+public class {{className}} {
+{{#each properties}}
+    {{#if (eq this.type "color")}}
+    public static let {{this.name}} = NSColor(red: {{colorRed this.value}}, green: {{colorGreen this.value}}, blue: {{colorBlue this.value}}, alpha: 1)
+    {{else if (eq this.type "dimension")}}
+    public static let {{this.name}}: CGFloat = {{this.value}}
+    {{/if}}
+{{/each}}
+}
