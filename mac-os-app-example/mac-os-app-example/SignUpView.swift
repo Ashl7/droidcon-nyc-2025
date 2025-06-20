@@ -44,8 +44,8 @@ struct SignUpView: View {
                         .textFieldStyle(.plain)
                         .padding(10)
                         .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color(focusedField == .username ? 
+                            RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius4)
+                                .stroke(Color(focusedField == .username ?
                                            (isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight) :
                                            .gray),
                                       lineWidth: 1)
@@ -59,8 +59,8 @@ struct SignUpView: View {
                         .textFieldStyle(.plain)
                         .padding(10)
                         .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color(focusedField == .password ? 
+                            RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius4)
+                                .stroke(Color(focusedField == .password ?
                                            (isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight) :
                                            .gray),
                                       lineWidth: 1)
@@ -80,7 +80,7 @@ struct SignUpView: View {
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(
-                                RoundedRectangle(cornerRadius: 10)
+                                RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius4)
                                     .fill(Color(isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight))
                             )
                     }
@@ -106,7 +106,7 @@ struct SignUpView: View {
                 }
                 .padding()
                 .background(Color(isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight).opacity(0.2))
-                .cornerRadius(10)
+                .cornerRadius(StyleDictionaryDimension.dimensionRadius4)
                 .padding()
             }
             .preferredColorScheme(isDarkMode ? .dark : .light)

@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.ashl7.designtokens.ui.theme.DesignTokensTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -22,6 +23,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.ashl7.designtokens.ui.theme.StyleDictionaryDimension
 
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,17 +79,13 @@ fun LoginScreen(
             .align(Alignment.CenterHorizontally)
         )
 
-        Text(
-          text = "Log in",
-          style = MaterialTheme.typography.titleLarge,
-        )
-
         OutlinedTextField(
           value = username,
           onValueChange = { username = it },
           label = { Text("Username") },
           singleLine = true,
-          modifier = Modifier.fillMaxWidth()
+          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius4),
+          modifier = Modifier.fillMaxWidth(),
         )
 
         OutlinedTextField(
@@ -96,12 +94,14 @@ fun LoginScreen(
           label = { Text("Password") },
           singleLine = true,
           visualTransformation = PasswordVisualTransformation(),
-          modifier = Modifier.fillMaxWidth(),
           isError = isPasswordWrong,
+          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius4),
+          modifier = Modifier.fillMaxWidth(),
         )
 
         Button(
           onClick = { isPasswordWrong = !isPasswordWrong },
+          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius4),
           modifier = Modifier.fillMaxWidth()
         ) {
           Text("Log In")
