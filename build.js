@@ -29,6 +29,22 @@ function parseColor(color) {
   return { r, g, b };
 }
 
+// Register color helper functions for the macOS template
+Handlebars.registerHelper('colorRed', function(hex) {
+  const { r } = parseColor(hex);
+  return (r/255).toFixed(3);
+});
+
+Handlebars.registerHelper('colorGreen', function(hex) {
+  const { g } = parseColor(hex);
+  return (g/255).toFixed(3);
+});
+
+Handlebars.registerHelper('colorBlue', function(hex) {
+  const { b } = parseColor(hex);
+  return (b/255).toFixed(3);
+});
+
 /**
  * Transform: name/compose
  * Purpose: Converts token names into camelCase format suitable for Kotlin
@@ -107,20 +123,14 @@ StyleDictionary.registerFormat({
  */
 StyleDictionary.registerFormat({
   name: 'macos/class',
-  formatter: function({ dictionary, file, options }) {
-    return `import AppKit
-
-public class ${file.className} {
-${dictionary.allProperties.map(prop => {
-  if (prop.type === 'color') {
-    const { r, g, b } = parseColor(prop.value);
-    return `    public static let ${prop.name} = NSColor(red: ${(r/255).toFixed(3)}, green: ${(g/255).toFixed(3)}, blue: ${(b/255).toFixed(3)}, alpha: 1)`;
-  } else if (prop.type === 'dimension') {
-    return `    public static let ${prop.name}: CGFloat = ${prop.value}`;
-  }
-  return '';
-}).filter(Boolean).join('\n')}
-}`
+  formatter: function({ dictionary, file }) {
+    const templateContent = fs.readFileSync(path.join(__dirname, 'templates/macos-class.hbs'), 'utf8');
+    const template = Handlebars.compile(templateContent);
+    
+    return template({
+      className: file.className,
+      properties: dictionary.allProperties
+    });
   }
 });
 
@@ -185,7 +195,7 @@ const myStyleDictionary = StyleDictionary.extend({
         {
           destination: "StyleDictionaryColor.swift",
           format: "macos/class",
-          className: "StyleDictionaryColor",  // This will be accessible as file.className
+          className: "StyleDictionaryColor",
           filter: {
             type: "color"
           }
@@ -193,7 +203,7 @@ const myStyleDictionary = StyleDictionary.extend({
         {
           destination: "StyleDictionaryDimension.swift",
           format: "macos/class",
-          className: "StyleDictionaryDimension",  // This will be accessible as file.className
+          className: "StyleDictionaryDimension",
           filter: {
             type: "dimension"
           }
