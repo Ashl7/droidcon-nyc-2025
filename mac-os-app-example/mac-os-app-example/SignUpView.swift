@@ -32,7 +32,7 @@ struct SignUpView: View {
             ZStack(alignment: .topTrailing) {
                 VStack {
                     // Sign Up Header
-                    Text("Log in to your bank account")
+                    Text("Log in to your Droidcon account")
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(Color(isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight))
