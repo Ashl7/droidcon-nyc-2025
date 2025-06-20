@@ -69,7 +69,7 @@ StyleDictionary.registerTransform({
 });
 
 /**
- * Transform: size/dp
+ * Transform: size
  * Purpose: Prepares dimension values for Compose's dp format
  * Applies to: Only tokens with type "dimension" (controlled by matcher)
  * Example:
@@ -77,7 +77,7 @@ StyleDictionary.registerTransform({
  * - Output: "8" (template will add .dp later)
  */
 StyleDictionary.registerTransform({
-  name: 'size/dp',
+  name: 'size',
   type: 'value',  // Affects the property values
   matcher: (prop) => prop.type === 'dimension',  // Only runs on dimensions
   transformer: (prop) => prop.value
@@ -154,7 +154,7 @@ const myStyleDictionary = StyleDictionary.extend({
     // Compose (Android) platform
     compose: {
       // Transforms to apply (order matters!)
-      transforms: ['name/compose', 'size/dp', 'color/hex'],
+      transforms: ['name/compose', 'size', 'color/hex'],
       // Output directory for generated files
       buildPath: "android-app-example/app/src/main/java/com/ashl7/designtokens/ui/theme/",
       // File configurations
@@ -189,7 +189,7 @@ const myStyleDictionary = StyleDictionary.extend({
     },
     // macOS platform configuration
     "macos": {
-      transforms: ['name/compose', 'size/dp', 'color/hex'],
+      transforms: ['name/compose', 'size', 'color/hex'],
       buildPath: "mac-os-app-example/mac-os-app-example/generated-tokens/",
       files: [
         {
