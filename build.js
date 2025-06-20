@@ -19,6 +19,17 @@ Handlebars.registerHelper('replace', function(str, find, replace) {
 });
 
 /**
+ * Helper function to convert hex to RGB values
+ */
+function parseColor(color) {
+  const hex = color.replace('#', '');
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  return { r, g, b };
+}
+
+/**
  * Transform: name/compose
  * Purpose: Converts token names into camelCase format suitable for Kotlin
  * Applies to: ALL tokens (no matcher specified)
@@ -57,6 +68,20 @@ StyleDictionary.registerTransform({
 });
 
 /**
+ * Transform: color/hex
+ * Purpose: Ensures color values are in correct hex format
+ */
+StyleDictionary.registerTransform({
+  name: 'color/hex',
+  type: 'value',
+  matcher: (prop) => prop.type === 'color',
+  transformer: (prop) => {
+    // Ensure the color value starts with #
+    return prop.value.startsWith('#') ? prop.value : `#${prop.value}`;
+  }
+});
+
+/**
  * Format: compose/object
  * Purpose: Generates Kotlin files using Handlebars template
  * Input: Transformed tokens filtered by type
@@ -73,6 +98,29 @@ StyleDictionary.registerFormat({
       className: options.className,
       properties: dictionary.allProperties
     });
+  }
+});
+
+/**
+ * Format: macos/class
+ * Purpose: Generates Swift files for macOS without timestamp
+ */
+StyleDictionary.registerFormat({
+  name: 'macos/class',
+  formatter: function({ dictionary, file, options }) {
+    return `import AppKit
+
+public class ${file.className} {
+${dictionary.allProperties.map(prop => {
+  if (prop.type === 'color') {
+    const { r, g, b } = parseColor(prop.value);
+    return `    public static let ${prop.name} = NSColor(red: ${(r/255).toFixed(3)}, green: ${(g/255).toFixed(3)}, blue: ${(b/255).toFixed(3)}, alpha: 1)`;
+  } else if (prop.type === 'dimension') {
+    return `    public static let ${prop.name}: CGFloat = ${prop.value}`;
+  }
+  return '';
+}).filter(Boolean).join('\n')}
+}`
   }
 });
 
@@ -96,7 +144,7 @@ const myStyleDictionary = StyleDictionary.extend({
     // Compose (Android) platform
     compose: {
       // Transforms to apply (order matters!)
-      transforms: ['name/compose', 'size/dp'],
+      transforms: ['name/compose', 'size/dp', 'color/hex'],
       // Output directory for generated files
       buildPath: "android-app-example/app/src/main/java/com/ashl7/designtokens/ui/theme/",
       // File configurations
@@ -129,24 +177,23 @@ const myStyleDictionary = StyleDictionary.extend({
         }
       ]
     },
-    // iOS platform configuration
-    "ios-swift": {
-      // Using built-in iOS transforms
-      transformGroup: "ios-swift",
+    // macOS platform configuration
+    "macos": {
+      transforms: ['name/compose', 'size/dp', 'color/hex'],
       buildPath: "mac-os-app-example/mac-os-app-example/generated-tokens/",
       files: [
         {
           destination: "StyleDictionaryColor.swift",
-          format: "ios-swift/class.swift",
-          className: "StyleDictionaryColor",
+          format: "macos/class",
+          className: "StyleDictionaryColor",  // This will be accessible as file.className
           filter: {
             type: "color"
           }
         },
         {
           destination: "StyleDictionaryDimension.swift",
-          format: "ios-swift/class.swift",
-          className: "StyleDictionaryDimension",
+          format: "macos/class",
+          className: "StyleDictionaryDimension",  // This will be accessible as file.className
           filter: {
             type: "dimension"
           }
