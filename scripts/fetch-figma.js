@@ -57,16 +57,16 @@ async function fetchFigmaVariables() {
                     // Convert RGBA to hex
                     const hex = rgbaToHex(value.r, value.g, value.b);
                     tokens.colors[name] = {
-                        $type: "color",
-                        $value: hex
+                        type: "color",
+                        value: hex
                     };
                 } else if (variable.name.startsWith('dimension/')) {
                     // Handle dimension variables
                     const parts = variable.name.split('/');
                     const name = parts.slice(1).join('-');
                     tokens.dimensions[name] = {
-                        $type: "dimension",
-                        $value: value.toString()
+                        type: "dimension",
+                        value: value.toString()
                     };
                 }
             }
