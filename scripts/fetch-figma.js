@@ -18,6 +18,23 @@ if (!FIGMA_ACCESS_TOKEN) {
 }
 
 /**
+ * Helper function to create nested objects from path array
+ * @param {Object} obj - The object to modify
+ * @param {Array} path - Array of path segments
+ * @param {*} value - The value to set
+ */
+function setNestedValue(obj, path, value) {
+    let current = obj;
+    for (let i = 0; i < path.length - 1; i++) {
+        if (!current[path[i]]) {
+            current[path[i]] = {};
+        }
+        current = current[path[i]];
+    }
+    current[path[path.length - 1]] = value;
+}
+
+/**
  * Main function to fetch variables from Figma and generate token files
  * Process:
  * 1. Fetch variables from Figma API
@@ -56,8 +73,8 @@ async function fetchFigmaVariables() {
         // 3. Transform variables into our token format
         console.log('🔄 Converting variables to json...');
         const tokens = {
-            colors: {},
-            dimensions: {}
+            dimension: {},
+            colors: {}
         };
 
         // Track counts for logging
@@ -83,11 +100,12 @@ async function fetchFigmaVariables() {
                 } else if (variable.name.startsWith('dimension/')) {
                     // Handle dimension variables
                     const parts = variable.name.split('/');
-                    const name = parts.slice(1).join('-');
-                    tokens.dimensions[name] = {
-                        type: "dimension",
-                        value: value.toString()
-                    };
+                    // Remove 'dimension' from parts and create nested structure
+                    const path = parts.slice(1);
+                    setNestedValue(tokens.dimension, path, {
+                        value: value.toString(),
+                        type: "dimension"
+                    });
                     dimensionCount++;
                 }
             }
@@ -107,7 +125,7 @@ async function fetchFigmaVariables() {
         
         await fs.writeFile(
             './tokens/dimensions.json',
-            JSON.stringify({ dimensions: tokens.dimensions }, null, 2)
+            JSON.stringify({ dimension: tokens.dimension }, null, 2)
         );
         console.log('   ✅ Saved dimensions.json');
     } catch (error) {
