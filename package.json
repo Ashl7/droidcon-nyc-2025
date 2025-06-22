@@ -2,8 +2,13 @@
   "name": "droidcon-nyc-2025",
   "version": "1.0.0",
   "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "fetch-tokens": "node scripts/fetch-figma.js",
+  },
   "dependencies": {
-    "handlebars": "^4.7.8",
-    "style-dictionary": "^3.9.2"
+    "style-dictionary": "^3.9.2",
+    "node-fetch": "^3.3.2",
+    "handlebars": "^4.7.8"
   }
 }

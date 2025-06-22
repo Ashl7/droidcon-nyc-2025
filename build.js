@@ -187,6 +187,7 @@ const myStyleDictionary = StyleDictionary.extend({
         }
       ]
     },
+    
     // macOS platform configuration
     "macos": {
       transforms: ['name/compose', 'size', 'color/hex'],
