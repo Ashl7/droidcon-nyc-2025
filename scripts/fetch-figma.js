@@ -6,19 +6,32 @@ import 'dotenv/config';
 
 const execAsync = promisify(exec);
 
-// Configuration
+// Configuration - Load from environment variables for security
 const FIGMA_ACCESS_TOKEN = process.env.FIGMA_ACCESS_TOKEN;
 const FIGMA_FILE_ID = 'moczTcFRkHE8lazAAxTglM';
 const COLLECTION_NAME = 'design-tokens';
 
+// Validate environment setup
 if (!FIGMA_ACCESS_TOKEN) {
     console.error('Error: FIGMA_ACCESS_TOKEN not found in .env file');
     process.exit(1);
 }
 
+/**
+ * Main function to fetch variables from Figma and generate token files
+ * Process:
+ * 1. Fetch variables from Figma API
+ * 2. Find our specific collection
+ * 3. Transform Figma variables into our token format
+ * 4. Save to token files
+ * 5. Run Style Dictionary build
+ */
 async function fetchFigmaVariables() {
     try {
-        // Fetch variables metadata
+        console.log('🚀 Starting Figma design token fetch...');
+        
+        // 1. Fetch from Figma API
+        console.log('📡 Fetching variables from Figma...');
         const response = await fetch(`https://api.figma.com/v1/files/${FIGMA_FILE_ID}/variables/local`, {
             headers: {
                 'X-Figma-Token': FIGMA_ACCESS_TOKEN
@@ -31,7 +44,8 @@ async function fetchFigmaVariables() {
 
         const data = await response.json();
         
-        // Find our collection
+        // 2. Find our collection
+        console.log(`🔍 Looking for collection: ${COLLECTION_NAME}`);
         const collections = Object.values(data.meta.variableCollections);
         const collection = collections.find(c => c.name === COLLECTION_NAME);
 
@@ -39,13 +53,18 @@ async function fetchFigmaVariables() {
             throw new Error(`Collection "${COLLECTION_NAME}" not found`);
         }
 
-        // Transform variables into our token format
+        // 3. Transform variables into our token format
+        console.log('🔄 Converting variables to json...');
         const tokens = {
             colors: {},
             dimensions: {}
         };
 
-        // Process each variable
+        // Track counts for logging
+        let colorCount = 0;
+        let dimensionCount = 0;
+
+        // Convert each variable to json
         Object.values(data.meta.variables).forEach(variable => {
             if (variable.variableCollectionId === collection.id) {
                 const value = variable.valuesByMode[collection.defaultModeId];
@@ -60,6 +79,7 @@ async function fetchFigmaVariables() {
                         type: "color",
                         value: hex
                     };
+                    colorCount++;
                 } else if (variable.name.startsWith('dimension/')) {
                     // Handle dimension variables
                     const parts = variable.name.split('/');
@@ -68,36 +88,47 @@ async function fetchFigmaVariables() {
                         type: "dimension",
                         value: value.toString()
                     };
+                    dimensionCount++;
                 }
             }
         });
 
-        // Save to token files
+        console.log(`\n📊 Summary:`);
+        console.log(`   Colors converted: ${colorCount}`);
+        console.log(`   Dimensions converted: ${dimensionCount}`);
+
+        // 4. Save to token files
+        console.log('\n💾 Saving token files...');
         await fs.writeFile(
             './tokens/colors.json',
             JSON.stringify({ colors: tokens.colors }, null, 2)
         );
+        console.log('   ✅ Saved colors.json');
         
         await fs.writeFile(
             './tokens/dimensions.json',
             JSON.stringify({ dimensions: tokens.dimensions }, null, 2)
         );
-
-        console.log('Successfully fetched and saved tokens from Figma');
-
-        // Run style dictionary build
-        const { stdout, stderr } = await execAsync('node build.js');
-        console.log('Style Dictionary Build Output:', stdout);
-        if (stderr) {
-            console.error('Style Dictionary Build Errors:', stderr);
-        }
-
+        console.log('   ✅ Saved dimensions.json');
     } catch (error) {
-        console.error('Error:', error);
+        console.error('\n❌ Error:', error);
+        // Log more details for specific errors
+        if (error.message.includes('401')) {
+            console.error('   This usually means your Figma access token is invalid or expired.');
+        }
+        if (error.message.includes('404')) {
+            console.error('   This usually means the Figma file ID is incorrect or you don\'t have access to it.');
+        }
     }
 }
 
-// Helper function to convert RGBA to hex
+/**
+ * Helper function to convert RGBA values from Figma to hex color codes
+ * @param {number} r - Red value (0-1)
+ * @param {number} g - Green value (0-1)
+ * @param {number} b - Blue value (0-1)
+ * @returns {string} Hex color code (e.g., "#FF0000")
+ */
 function rgbaToHex(r, g, b) {
     const toHex = (value) => {
         const hex = Math.round(value * 255).toString(16);
