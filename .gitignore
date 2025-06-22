@@ -1,2 +1,4 @@
 .env
 android-app-example/.idea/gradle.xml
+.DS_Store
+**/.DS_Store
