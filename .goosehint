@@ -1,0 +1,97 @@
+# Design Tokens Configuration
+
+## Project Structure
+tokens/
+  - colors.json      # Color tokens in nested format
+  - dimensions.json  # Dimension tokens in nested format
+scripts/
+  - fetch-figma.js  # Script to fetch and transform Figma variables
+.env                # Contains FIGMA_ACCESS_TOKEN (gitignored)
+
+## Token Formats
+
+### Dimension Token Format
+```json
+{
+  "dimension": {
+    "radius": {
+      "0": {
+        "value": "0",
+        "type": "dimension"
+      },
+      "8": {
+        "value": "8",
+        "type": "dimension"
+      }
+    },
+    "icon": {
+      "small": {
+        "value": "32",
+        "type": "dimension"
+      }
+    }
+  }
+}
+```
+
+### Color Token Format
+```json
+{
+  "color": {
+    "primary": {
+      "light": {
+        "value": "#E04C1F",
+        "type": "color"
+      },
+      "dark": {
+        "value": "#0057CC",
+        "type": "color"
+      }
+    }
+  }
+}
+```
+
+## Figma Setup
+- Collection name: "design-tokens"
+- Variable naming:
+  - Colors: "color/primary/light", "color/secondary/dark"
+  - Dimensions: "dimension/radius/8", "dimension/icon/small"
+
+## Build Process
+1. Fetch tokens: `npm run fetch-tokens`
+   - Fetches from Figma API
+   - Transforms to proper token format
+   - Saves to tokens/*.json files
+2. Generate platform code: `npm run build`
+   - Generates Kotlin for Android (Compose)
+   - Generates Swift for macOS
+
+## Generated Code Examples
+
+### Compose (Kotlin)
+```kotlin
+object StyleDictionaryColor {
+    val colorPrimaryLight = Color(0xFFE04C1F)
+    val colorPrimaryDark = Color(0xFF0057CC)
+}
+
+object StyleDictionaryDimension {
+    val dimensionRadius0 = 0.dp
+    val dimensionRadius8 = 8.dp
+}
+```
+
+### macOS (Swift)
+```swift
+public class StyleDictionaryColor {
+    public static let colorPrimaryLight = NSColor(red: 0.878, green: 0.298, blue: 0.122, alpha: 1)
+    public static let colorPrimaryDark = NSColor(red: 0.000, green: 0.341, blue: 0.800, alpha: 1)
+}
+```
+
+## Git Configuration
+Files to ignore:
+- .env (contains Figma token)
+- .DS_Store
+- android-app-example/.idea/gradle.xml
