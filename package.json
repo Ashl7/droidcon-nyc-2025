@@ -4,11 +4,12 @@
   "type": "module",
   "scripts": {
     "build": "node build.js",
-    "fetch-tokens": "node scripts/fetch-figma.js",
+    "fetch-tokens": "node scripts/fetch-figma.js"
   },
   "dependencies": {
-    "style-dictionary": "^3.9.2",
+    "dotenv": "^16.5.0",
+    "handlebars": "^4.7.8",
     "node-fetch": "^3.3.2",
-    "handlebars": "^4.7.8"
+    "style-dictionary": "^3.9.2"
   }
 }
