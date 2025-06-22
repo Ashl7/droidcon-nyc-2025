@@ -74,7 +74,7 @@ async function fetchFigmaVariables() {
         console.log('🔄 Converting variables to json...');
         const tokens = {
             dimension: {},
-            colors: {}
+            color: {}
         };
 
         // Track counts for logging
@@ -89,13 +89,13 @@ async function fetchFigmaVariables() {
                 if (variable.name.startsWith('color/')) {
                     // Handle color variables
                     const parts = variable.name.split('/');
-                    const name = `${parts[1]}Mode${parts[2].charAt(0).toUpperCase() + parts[2].slice(1)}`;
-                    // Convert RGBA to hex
+                    // Remove 'color' prefix and create nested structure
+                    const path = parts.slice(1);
                     const hex = rgbaToHex(value.r, value.g, value.b);
-                    tokens.colors[name] = {
-                        type: "color",
-                        value: hex
-                    };
+                    setNestedValue(tokens.color, path, {
+                        value: hex.toUpperCase(),
+                        type: "color"
+                    });
                     colorCount++;
                 } else if (variable.name.startsWith('dimension/')) {
                     // Handle dimension variables
@@ -119,7 +119,7 @@ async function fetchFigmaVariables() {
         console.log('\n💾 Saving token files...');
         await fs.writeFile(
             './tokens/colors.json',
-            JSON.stringify({ colors: tokens.colors }, null, 2)
+            JSON.stringify({ color: tokens.color }, null, 2)
         );
         console.log('   ✅ Saved colors.json');
         
