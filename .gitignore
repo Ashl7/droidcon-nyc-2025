@@ -2,3 +2,13 @@
 android-app-example/.idea/gradle.xml
 .DS_Store
 **/.DS_Store
+
+# Xcode
+mac-os-app-example/mac-os-app-example.xcodeproj/project.xcworkspace/xcuserdata/
+mac-os-app-example/mac-os-app-example.xcodeproj/xcuserdata/
+*.xcuserstate
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
