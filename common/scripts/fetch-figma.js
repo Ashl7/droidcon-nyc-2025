@@ -2,9 +2,13 @@ import fetch from 'node-fetch';
 import fs from 'fs/promises';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import 'dotenv/config';
+import { config } from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const execAsync = promisify(exec);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+config({ path: path.join(__dirname, '../../.env') });
 
 // Configuration - Load from environment variables for security
 const FIGMA_ACCESS_TOKEN = process.env.FIGMA_ACCESS_TOKEN;
@@ -118,13 +122,13 @@ async function fetchFigmaVariables() {
         // 4. Save to token files
         console.log('\n💾 Saving token files...');
         await fs.writeFile(
-            './tokens/colors.json',
+            path.join(__dirname, '../tokens/colors.json'),
             JSON.stringify({ color: tokens.color }, null, 2)
         );
         console.log('   ✅ Saved colors.json');
         
         await fs.writeFile(
-            './tokens/dimensions.json',
+            path.join(__dirname, '../tokens/dimensions.json'),
             JSON.stringify({ dimension: tokens.dimension }, null, 2)
         );
         console.log('   ✅ Saved dimensions.json');
