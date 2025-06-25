@@ -21,7 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import com.ashl7.designtokens.ui.theme.StyleDictionaryDimension
+import com.ashl7.designtokens.ui.theme.DroidconDimensions
 
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +82,7 @@ fun LoginScreen(
           onValueChange = { username = it },
           label = { Text("Username") },
           singleLine = true,
-          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius2),
+          shape = RoundedCornerShape(size = DroidconDimensions.dimensionRadius2),
           modifier = Modifier.fillMaxWidth(),
         )
 
@@ -93,13 +93,13 @@ fun LoginScreen(
           singleLine = true,
           visualTransformation = PasswordVisualTransformation(),
           isError = isPasswordWrong,
-          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius2),
+          shape = RoundedCornerShape(size = DroidconDimensions.dimensionRadius2),
           modifier = Modifier.fillMaxWidth(),
         )
 
         Button(
           onClick = { isPasswordWrong = !isPasswordWrong },
-          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius2),
+          shape = RoundedCornerShape(size = DroidconDimensions.dimensionRadius2),
           modifier = Modifier.fillMaxWidth()
         ) {
           Text("Log In")

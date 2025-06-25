@@ -1,6 +1,8 @@
+// This file is auto-generated, do not touch.
+
 import AppKit
 
-public class StyleDictionaryDimension {
+public class DroidconDimensions {
     public static let dimensionRadius2: CGFloat = 2
         public static let dimensionRadius8: CGFloat = 8
         public static let dimensionRadius16: CGFloat = 16

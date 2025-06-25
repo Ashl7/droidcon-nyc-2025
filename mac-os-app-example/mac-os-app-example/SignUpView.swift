@@ -9,7 +9,7 @@ struct CustomTextFieldStyle: TextFieldStyle {
             .padding(10)
             .background(
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color(isFocused ? StyleDictionaryColor.colorSecondaryLight : .gray), lineWidth: 1)
+                    .stroke(Color(isFocused ? DroidconColors.colorSecondaryLight : .gray), lineWidth: 1)
             )
             .focused($isFocused)
     }
@@ -35,7 +35,7 @@ struct SignUpView: View {
                     Text("Log in to your Droidcon account")
                         .font(.largeTitle)
                         .bold()
-                        .foregroundColor(Color(isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight))
+                        .foregroundColor(Color(isDarkMode ? DroidconColors.colorPrimaryDark : DroidconColors.colorPrimaryLight))
                         .padding(.top, 100)
                         .padding(.bottom, 50)
                     
@@ -44,9 +44,9 @@ struct SignUpView: View {
                         .textFieldStyle(.plain)
                         .padding(10)
                         .background(
-                            RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius2)
+                            RoundedRectangle(cornerRadius: DroidconDimensions.dimensionRadius2)
                                 .stroke(Color(focusedField == .username ?
-                                           (isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight) :
+                                           (isDarkMode ? DroidconColors.colorPrimaryDark : DroidconColors.colorPrimaryLight) :
                                            .gray),
                                       lineWidth: 1)
                         )
@@ -59,9 +59,9 @@ struct SignUpView: View {
                         .textFieldStyle(.plain)
                         .padding(10)
                         .background(
-                            RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius2)
+                            RoundedRectangle(cornerRadius: DroidconDimensions.dimensionRadius2)
                                 .stroke(Color(focusedField == .password ?
-                                           (isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight) :
+                                           (isDarkMode ? DroidconColors.colorPrimaryDark : DroidconColors.colorPrimaryLight) :
                                            .gray),
                                       lineWidth: 1)
                         )
@@ -80,8 +80,8 @@ struct SignUpView: View {
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(
-                                RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius2)
-                                    .fill(Color(isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight))
+                                RoundedRectangle(cornerRadius: DroidconDimensions.dimensionRadius2)
+                                    .fill(Color(isDarkMode ? DroidconColors.colorPrimaryDark : DroidconColors.colorPrimaryLight))
                             )
                     }
                     .buttonStyle(PlainButtonStyle()) // This removes the default button styling
@@ -92,21 +92,21 @@ struct SignUpView: View {
                     // Footer text
                     Text("Droidcon NYC 2025")
                         .font(.caption)
-                        .foregroundColor(Color(isDarkMode ? StyleDictionaryColor.colorSecondaryDark : StyleDictionaryColor.colorSecondaryLight))
+                        .foregroundColor(Color(isDarkMode ? DroidconColors.colorSecondaryDark : DroidconColors.colorSecondaryLight))
                         .padding(.bottom, 20)
                 }
                 
                 // Dark/Light mode toggle in top right
                 HStack {
                     Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
-                        .foregroundColor(Color(isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight))
+                        .foregroundColor(Color(isDarkMode ? DroidconColors.colorPrimaryDark : DroidconColors.colorPrimaryLight))
                     
                     Toggle("", isOn: $isDarkMode)
                         .labelsHidden()
                 }
                 .padding()
-                .background(Color(isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight).opacity(0.2))
-                .cornerRadius(StyleDictionaryDimension.dimensionRadius2)
+                .background(Color(isDarkMode ? DroidconColors.colorPrimaryDark : DroidconColors.colorPrimaryLight).opacity(0.2))
+                .cornerRadius(DroidconDimensions.dimensionRadius2)
                 .padding()
             }
             .preferredColorScheme(isDarkMode ? .dark : .light)

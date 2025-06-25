@@ -161,10 +161,10 @@ const myStyleDictionary = StyleDictionary.extend({
       files: [
         {
           // Colors file configuration
-          destination: "StyleDictionaryColor.kt",
+          destination: "DroidconColors.kt",
           format: "compose/object",
           options: {
-            className: "StyleDictionaryColor",
+            className: "DroidconColors",
             packageName: "com.ashl7.designtokens.ui.theme"
           },
           // Filter to only include color tokens
@@ -174,10 +174,10 @@ const myStyleDictionary = StyleDictionary.extend({
         },
         {
           // Dimensions file configuration
-          destination: "StyleDictionaryDimension.kt",
+          destination: "DroidconDimensions.kt",
           format: "compose/object",
           options: {
-            className: "StyleDictionaryDimension",
+            className: "DroidconDimensions",
             packageName: "com.ashl7.designtokens.ui.theme"
           },
           // Filter to only include dimension tokens
@@ -194,17 +194,17 @@ const myStyleDictionary = StyleDictionary.extend({
       buildPath: "mac-os-app-example/mac-os-app-example/generated-tokens/",
       files: [
         {
-          destination: "StyleDictionaryColor.swift",
+          destination: "DroidconColors.swift",
           format: "macos/class",
-          className: "StyleDictionaryColor",
+          className: "DroidconColors",
           filter: {
             type: "color"
           }
         },
         {
-          destination: "StyleDictionaryDimension.swift",
+          destination: "DroidconDimensions.swift",
           format: "macos/class",
-          className: "StyleDictionaryDimension",
+          className: "DroidconDimensions",
           filter: {
             type: "dimension"
           }

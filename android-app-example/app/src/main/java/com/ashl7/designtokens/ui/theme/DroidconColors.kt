@@ -1,9 +1,11 @@
+// This file is auto-generated, do not touch.
+
 package com.ashl7.designtokens.ui.theme
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-object StyleDictionaryColor {
+object DroidconColors {
     val colorPrimaryLight = Color(0xFFE04C1F)
     val colorPrimaryDark = Color(0xFF0057CC)
     val colorSecondaryLight = Color(0xFF0057CC)
