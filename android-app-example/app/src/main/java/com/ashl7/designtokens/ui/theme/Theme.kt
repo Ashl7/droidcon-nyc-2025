@@ -24,7 +24,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 @Composable
-fun DesignTokensTheme(
+fun DroidconTheme(
   darkTheme: Boolean = isSystemInDarkTheme(),
   content: @Composable () -> Unit
 ) {

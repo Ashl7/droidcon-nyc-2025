@@ -12,7 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.ashl7.designtokens.ui.theme.DesignTokensTheme
+import com.ashl7.designtokens.ui.theme.DroidconTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
     setContent {
       var isDarkTheme by rememberSaveable { mutableStateOf(false) }
 
-      DesignTokensTheme(darkTheme = isDarkTheme) {
+      DroidconTheme(darkTheme = isDarkTheme) {
         LoginScreen(
           isDarkTheme = isDarkTheme,
           onToggleTheme = { isDarkTheme = it }
