@@ -106,7 +106,7 @@ StyleDictionary.registerTransform({
 StyleDictionary.registerFormat({
   name: 'compose/object',
   formatter: function({ dictionary, file, options }) {
-    const templateContent = fs.readFileSync(path.join(__dirname, 'templates/compose-object.hbs'), 'utf8');
+    const templateContent = fs.readFileSync(path.join(__dirname, '../templates/compose-object.hbs'), 'utf8');
     const template = Handlebars.compile(templateContent);
     
     return template({
@@ -124,7 +124,7 @@ StyleDictionary.registerFormat({
 StyleDictionary.registerFormat({
   name: 'macos/class',
   formatter: function({ dictionary, file }) {
-    const templateContent = fs.readFileSync(path.join(__dirname, 'templates/macos-class.hbs'), 'utf8');
+    const templateContent = fs.readFileSync(path.join(__dirname, '../templates/macos-class.hbs'), 'utf8');
     const template = Handlebars.compile(templateContent);
     
     return template({

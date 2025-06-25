@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "node build.js",
+    "build": "node scripts/build.js",
     "fetch-tokens": "node scripts/fetch-figma.js",
     "update-tokens": "npm run fetch-tokens && npm run build"
   },
