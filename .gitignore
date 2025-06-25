@@ -12,3 +12,4 @@ mac-os-app-example/mac-os-app-example.xcodeproj/xcuserdata/
 .DS_Store
 .AppleDouble
 .LSOverride
+android-app-example/.idea/gradle.xml

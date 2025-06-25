@@ -44,7 +44,7 @@ struct SignUpView: View {
                         .textFieldStyle(.plain)
                         .padding(10)
                         .background(
-                            RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius4)
+                            RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius2)
                                 .stroke(Color(focusedField == .username ?
                                            (isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight) :
                                            .gray),
@@ -59,7 +59,7 @@ struct SignUpView: View {
                         .textFieldStyle(.plain)
                         .padding(10)
                         .background(
-                            RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius4)
+                            RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius2)
                                 .stroke(Color(focusedField == .password ?
                                            (isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight) :
                                            .gray),
@@ -80,7 +80,7 @@ struct SignUpView: View {
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(
-                                RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius4)
+                                RoundedRectangle(cornerRadius: StyleDictionaryDimension.dimensionRadius2)
                                     .fill(Color(isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight))
                             )
                     }
@@ -106,7 +106,7 @@ struct SignUpView: View {
                 }
                 .padding()
                 .background(Color(isDarkMode ? StyleDictionaryColor.colorPrimaryDark : StyleDictionaryColor.colorPrimaryLight).opacity(0.2))
-                .cornerRadius(StyleDictionaryDimension.dimensionRadius4)
+                .cornerRadius(StyleDictionaryDimension.dimensionRadius2)
                 .padding()
             }
             .preferredColorScheme(isDarkMode ? .dark : .light)

@@ -82,7 +82,7 @@ fun LoginScreen(
           onValueChange = { username = it },
           label = { Text("Username") },
           singleLine = true,
-          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius4),
+          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius2),
           modifier = Modifier.fillMaxWidth(),
         )
 
@@ -93,13 +93,13 @@ fun LoginScreen(
           singleLine = true,
           visualTransformation = PasswordVisualTransformation(),
           isError = isPasswordWrong,
-          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius4),
+          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius2),
           modifier = Modifier.fillMaxWidth(),
         )
 
         Button(
           onClick = { isPasswordWrong = !isPasswordWrong },
-          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius4),
+          shape = RoundedCornerShape(size = StyleDictionaryDimension.dimensionRadius2),
           modifier = Modifier.fillMaxWidth()
         ) {
           Text("Log In")
