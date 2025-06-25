@@ -156,7 +156,7 @@ const myStyleDictionary = StyleDictionary.extend({
       // Transforms to apply (order matters!)
       transforms: ['name/compose', 'size', 'color/hex'],
       // Output directory for generated files
-      buildPath: "android-app-example/app/src/main/java/com/ashl7/designtokens/ui/theme/",
+      buildPath: "../android-app-example/app/src/main/java/com/ashl7/designtokens/ui/theme/",
       // File configurations
       files: [
         {
@@ -191,7 +191,7 @@ const myStyleDictionary = StyleDictionary.extend({
     // macOS platform configuration
     "macos": {
       transforms: ['name/compose', 'size', 'color/hex'],
-      buildPath: "mac-os-app-example/mac-os-app-example/generated-tokens/",
+      buildPath: "../mac-os-app-example/mac-os-app-example/generated-tokens/",
       files: [
         {
           destination: "DroidconColors.swift",
