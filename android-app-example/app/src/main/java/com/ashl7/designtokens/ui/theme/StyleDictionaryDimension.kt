@@ -5,7 +5,6 @@ import androidx.compose.ui.unit.dp
 
 object StyleDictionaryDimension {
     val dimensionRadius0 = 0.dp
-        val dimensionRadius4 = 4.dp
         val dimensionRadius8 = 8.dp
         val dimensionRadius16 = 16.dp
         val dimensionIconSmall = 32.dp
