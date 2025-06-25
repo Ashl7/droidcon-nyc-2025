@@ -14,11 +14,11 @@ This project demonstrates a complete design token workflow using Style Dictionar
 │   │   ├── colors.json      # Color tokens
 │   │   └── dimensions.json  # Dimension tokens
 │   ├── scripts/
-│   │   └── fetch-figma.js  # Script to fetch tokens from Figma
+│   │   ├── fetch-figma.js  # Script to fetch tokens from Figma
+│   │   └── build.js        # Style Dictionary configuration
 │   ├── templates/          # Handlebars templates for code generation
 │   │   ├── compose-object.hbs
 │   │   └── macos-class.hbs
-│   ├── build.js           # Style Dictionary configuration
 │   └── package.json       # Node.js dependencies
 ├── android-app-example/    # Android demo app using Compose
 ├── mac-os-app-example/    # macOS demo app
