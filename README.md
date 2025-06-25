@@ -9,29 +9,38 @@ This project demonstrates a complete design token workflow using Style Dictionar
 
 ```
 .
-├── tokens/                     # Design token source files
-│   ├── colors.json            # Color tokens
-│   └── dimensions.json        # Dimension tokens
-├── scripts/
-│   └── fetch-figma.js        # Script to fetch tokens from Figma
-├── android-app-example/       # Android demo app using Compose
-└── mac-os-app-example/       # macOS demo app
+├── common/                    # Design system and token management
+│   ├── tokens/               # Design token source files
+│   │   ├── colors.json      # Color tokens
+│   │   └── dimensions.json  # Dimension tokens
+│   ├── scripts/
+│   │   └── fetch-figma.js  # Script to fetch tokens from Figma
+│   ├── templates/          # Handlebars templates for code generation
+│   │   ├── compose-object.hbs
+│   │   └── macos-class.hbs
+│   ├── build.js           # Style Dictionary configuration
+│   └── package.json       # Node.js dependencies
+├── android-app-example/    # Android demo app using Compose
+├── mac-os-app-example/    # macOS demo app
+└── .env                   # Environment variables (not in git)
 ```
 
 ## Setup
 
 1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `.env` file in the root directory with your Figma access token:
+2. Create a `.env` file in the root directory with your Figma access token:
    ```
    FIGMA_ACCESS_TOKEN=your_token_here
+   ```
+3. Install dependencies:
+   ```bash
+   cd common
+   npm install
    ```
 
 ## Available Commands
 
+From the `common` directory:
 - `npm run fetch-tokens`: Fetches design tokens from Figma and converts them to Style Dictionary format
 - `npm run build`: Generates platform-specific token files
 - `npm run update-tokens`: Runs both fetch and build commands
@@ -68,7 +77,10 @@ Dimensions are organized by category and size:
 
 ## Generated Code
 
+The build process generates platform-specific code in their respective app directories:
+
 ### Android (Compose)
+Location: `android-app-example/app/src/main/java/com/ashl7/designtokens/ui/theme/`
 ```kotlin
 object StyleDictionaryColor {
     val colorPrimaryLight = Color(0xFFE04C1F)
@@ -82,6 +94,7 @@ object StyleDictionaryDimension {
 ```
 
 ### macOS (Swift)
+Location: `mac-os-app-example/mac-os-app-example/generated-tokens/`
 ```swift
 public class StyleDictionaryColor {
     public static let colorPrimaryLight = NSColor(red: 0.878, green: 0.298, blue: 0.122, alpha: 1)
@@ -91,18 +104,23 @@ public class StyleDictionaryColor {
 
 ## Figma Setup
 
-1. Create a collection named "design-tokens"
+1. Create a collection named "droidcon"
 2. Create variables following the naming convention:
    - Colors: "color/primary/light"
    - Dimensions: "dimension/radius/8"
-3. Add your Figma access token to .env file
+3. Add your Figma access token to .env file in the root directory
 
 ## Development Workflow
 
 1. Make changes to variables in Figma
-2. Run `npm run fetch-tokens` to update local token files
-3. Run `npm run build` to generate platform-specific code
-4. Or use `npm run update-tokens` to do both
+2. From the `common` directory:
+   ```bash
+   npm run fetch-tokens  # Update token files
+   npm run build        # Generate platform code
+   # or
+   npm run update-tokens  # Do both
+   ```
+3. Changes will be reflected in both Android and macOS apps
 
 ## Contributing
 
