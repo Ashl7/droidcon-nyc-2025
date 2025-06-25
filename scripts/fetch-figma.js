@@ -9,7 +9,7 @@ const execAsync = promisify(exec);
 // Configuration - Load from environment variables for security
 const FIGMA_ACCESS_TOKEN = process.env.FIGMA_ACCESS_TOKEN;
 const FIGMA_FILE_ID = 'moczTcFRkHE8lazAAxTglM';
-const COLLECTION_NAME = 'design-tokens';
+const COLLECTION_NAME = 'droidcon';
 
 // Validate environment setup
 if (!FIGMA_ACCESS_TOKEN) {
