@@ -1,12 +1,18 @@
 # Design Tokens Configuration
 
 ## Project Structure
-tokens/
-  - colors.json      # Color tokens in nested format
-  - dimensions.json  # Dimension tokens in nested format
-scripts/
-  - fetch-figma.js  # Script to fetch and transform Figma variables
-.env                # Contains FIGMA_ACCESS_TOKEN (gitignored)
+common/                    # Design system and token management
+  ├── tokens/             # Design token source files
+  │   ├── colors.json     # Color tokens
+  │   └── dimensions.json # Dimension tokens
+  ├── scripts/
+  │   ├── fetch-figma.js  # Script to fetch tokens from Figma
+  │   └── build.js        # Style Dictionary configuration
+  ├── templates/          # Handlebars templates for code generation
+  │   ├── compose-object.hbs
+  │   └── macos-class.hbs
+  └── package.json        # Node.js dependencies
+.env                      # Contains FIGMA_ACCESS_TOKEN (gitignored)
 
 ## Token Formats
 
@@ -53,23 +59,23 @@ scripts/
 ```
 
 ## Figma Setup
-- Collection name: "design-tokens"
+- Collection name: "droidcon"
 - Variable naming:
   - Colors: "color/primary/light", "color/secondary/dark"
   - Dimensions: "dimension/radius/8", "dimension/icon/small"
 
 ## Build Process
-1. Fetch tokens: `npm run fetch-tokens`
-   - Fetches from Figma API
-   - Transforms to proper token format
-   - Saves to tokens/*.json files
-2. Generate platform code: `npm run build`
-   - Generates Kotlin for Android (Compose)
-   - Generates Swift for macOS
+1. From the `common` directory:
+   ```bash
+   npm run fetch-tokens  # Fetches from Figma API and saves to common/tokens/*.json
+   npm run build        # Generates platform code
+   npm run update-tokens # Does both
+   ```
 
-## Generated Code Examples
+## Generated Code Locations
 
 ### Compose (Kotlin)
+Location: `android-app-example/app/src/main/java/com/ashl7/designtokens/ui/theme/`
 ```kotlin
 object StyleDictionaryColor {
     val colorPrimaryLight = Color(0xFFE04C1F)
@@ -83,6 +89,7 @@ object StyleDictionaryDimension {
 ```
 
 ### macOS (Swift)
+Location: `mac-os-app-example/mac-os-app-example/generated-tokens/`
 ```swift
 public class StyleDictionaryColor {
     public static let colorPrimaryLight = NSColor(red: 0.878, green: 0.298, blue: 0.122, alpha: 1)
@@ -95,3 +102,4 @@ Files to ignore:
 - .env (contains Figma token)
 - .DS_Store
 - android-app-example/.idea/gradle.xml
+- mac-os-app-example/mac-os-app-example.xcodeproj/project.xcworkspace/xcuserdata/
